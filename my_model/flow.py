@@ -44,47 +44,10 @@ def preprocessing_task(input_variables, misc_settings):
     """
     raise NotImplementedError("Called not implemented preprocessing_task in flow.")
 
-
 @task(log_stdout=True)
 def format_file(output_variables):
-    """Task used for organizing an file object. The formatted object must be
-    serializable by the file_type passed in the SaveFile task call.
-    See https://slaclab.github.io/lume-services/services/files/ for more information
-    about interacting with file objects and file systems
-
-    Examples:
-        Suppose we have a workflow with two results `text1` and `text2`. We'd like to
-        concatenate the text and save in a text file. This would look like:
-        ```python
-
-        @task(log_stdout=True)
-        def format_file(output_variables):
-            text = output_variables["text1"].value + output_variables["text2"].value
-            return text
-
-        save_file_task = SaveFile()
-
-        with Flow("my-flow") as flow:
-
-            ... # set up params, evaluate, etc.
-
-            output_variables = evaluate(formatted_input_variables)
-            text = format_file(output_variables)
-
-            file_parameters = save_file_task.parameters
-
-            # save file
-            my_file = save_file_task(
-                text,
-                filename = file_parameters["filename"],
-                filesystem_identifier = file_parameters["filesystem_identifier"],
-                file_type = TextFile # THIS MUST BE PASSED IN THE TASK CALL
-            )
-
-        ```
-
-    """
-    raise NotImplementedError("Called not implemented format_file in flow.")
+    text = str(output_variables["output2"].value + output_variables["output3"].value)
+    return text
 
 
 @task(log_stdout=True)

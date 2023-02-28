@@ -2,6 +2,8 @@ name: my-model-dev
 channels:
   - conda-forge
 dependencies:
+  - python=3.9
+  - numpy
   - click
   - pydantic # until lume-services registered with conda
   - lume-model>=1.4 # until lume-services registered with conda
@@ -17,3 +19,4 @@ dependencies:
   - pytest
   - pytest-cov
   - jupyterlab
+  - python=3.9
